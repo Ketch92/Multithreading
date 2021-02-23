@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 
 class SumWithCallableTest {
     private Summing summing;
-    private SumWihForJoin wihForJoin;
+    private SumWithForJoin wihForJoin;
     
     @BeforeEach
     void setUp() {
         summing = new Summing();
-        wihForJoin = new SumWihForJoin(summing.getList());
+        wihForJoin = new SumWithForJoin(summing.getList());
     }
     
     @Test

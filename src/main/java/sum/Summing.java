@@ -31,7 +31,7 @@ public class Summing {
                 .collect(Collectors.toList());
     }
     
-    private int sum() {
-        return list.stream().reduce(Integer::sum);
+    private Integer sum() {
+        return list.stream().reduce(Integer::sum).get();
     }
 }

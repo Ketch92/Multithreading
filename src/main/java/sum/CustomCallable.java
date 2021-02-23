@@ -12,6 +12,6 @@ public class CustomCallable implements Callable<Integer> {
     
     @Override
     public Integer call() throws Exception {
-        return list.stream().reduce(Integer::sum);
+        return list.stream().reduce(Integer::sum).get();
     }
 }
