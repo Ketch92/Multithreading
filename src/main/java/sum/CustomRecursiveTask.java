@@ -12,6 +12,6 @@ public class CustomRecursiveTask extends RecursiveTask<Integer> {
     
     @Override
     protected Integer compute() {
-        return list.stream().reduce(0, Integer::sum);
+        return list.stream().reduce(Integer::sum);
     }
 }
