@@ -1,8 +1,6 @@
 public class Counter {
     private int counter;
     
-    public Counter() {
-    }
     
     public int increment() {
         return counter++;
