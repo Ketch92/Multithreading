@@ -1,7 +1,7 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import sum.SumWihForJoin;
 import sum.SumWithCallable;
 
 public class Main {
@@ -18,5 +18,7 @@ public class Main {
 
         SumWithCallable sumWithCallable = new SumWithCallable(list);
         System.out.println(sumWithCallable.execute());
+        SumWihForJoin sumWihForJoin = new SumWihForJoin(list);
+        System.out.println(sumWihForJoin.execute());
     }
 }
