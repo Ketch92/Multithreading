@@ -32,6 +32,6 @@ public class Summing {
     }
     
     private int sum() {
-        return list.stream().mapToInt(i -> i).sum();
+        return list.stream().reduce(0, Integer::sum);
     }
 }

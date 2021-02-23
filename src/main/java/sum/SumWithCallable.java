@@ -18,21 +18,19 @@ public class SumWithCallable {
     public int execute() {
         List<List<Integer>> partition = ListUtils.partition(list, list.size() / THREAD_COUNT);
         ExecutorService executorService = Executors.newFixedThreadPool(THREAD_COUNT);
-        List<SumCallableThread> callableThreads = getSumCallableThreads(partition);
+        List<CustomCallable> callableThreads = getSumCallableThreads(partition);
         try {
             executorService.invokeAll(callableThreads);
         } catch (InterruptedException e) {
             throw new RuntimeException("Error ", e);
         }
-        int result = getResult(executorService, callableThreads);
-        executorService.shutdownNow();
-        return result;
+        return getResult(executorService, callableThreads);
     }
     
     private int getResult(ExecutorService executorService,
-                          List<SumCallableThread> callableThreads) {
+                          List<CustomCallable> callableThreads) {
         int result = 0;
-        for (SumCallableThread thread : callableThreads) {
+        for (CustomCallable thread : callableThreads) {
             try {
                 result += executorService.submit(thread).get();
             } catch (InterruptedException | ExecutionException e) {
@@ -42,9 +40,9 @@ public class SumWithCallable {
         return result;
     }
     
-    private List<SumCallableThread> getSumCallableThreads(List<List<Integer>> partition) {
+    private List<CustomCallable> getSumCallableThreads(List<List<Integer>> partition) {
         return partition.stream()
-                .map(SumCallableThread::new)
+                .map(CustomCallable::new)
                 .collect(Collectors.toList());
     }
 }
