@@ -1,10 +1,10 @@
 package sum;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 import org.apache.commons.collections4.ListUtils;
 
 public class SumWithCallable {
@@ -43,10 +43,8 @@ public class SumWithCallable {
     }
     
     private List<SumCallableThread> getSumCallableThreads(List<List<Integer>> partition) {
-        List<SumCallableThread> callableThreads = new ArrayList<>();
-        for (List<Integer> subList : partition) {
-            callableThreads.add(new SumCallableThread(subList));
-        }
-        return callableThreads;
+        return partition.stream()
+                .map(SumCallableThread::new)
+                .collect(Collectors.toList());
     }
 }
