@@ -1,5 +1,0 @@
-package sum;
-
-class ExecutorServiceThreadsTest {
-
-}
