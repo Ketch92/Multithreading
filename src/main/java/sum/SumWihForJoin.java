@@ -19,6 +19,6 @@ public class SumWihForJoin {
                 .map(CustomRecursiveTask::new)
                 .collect(Collectors.toList());
         return ForkJoinTask.invokeAll(recursiveTasks).stream()
-                .map(ForkJoinTask::join).reduce(0, Integer::sum);
+                .map(ForkJoinTask::join).reduce(Integer::sum);
     }
 }
