@@ -1,24 +1,29 @@
 package sum;
 
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class SumWithCallableTest {
-    private Summing summing;
+    private IntegerListRandomGenerator generator;
     private SumWithForJoin wihForJoin;
     
     @BeforeEach
     void setUp() {
-        summing = new Summing();
-        wihForJoin = new SumWithForJoin(summing.getList());
+        generator = new IntegerListRandomGenerator();
+        wihForJoin = new SumWithForJoin(generator.getList());
     }
     
     @Test
     public void testRandomlyGeneratedList() {
-        int expected = summing.getSum();
+        int expected = getSum(generator.getList());
         int actual = wihForJoin.execute();
     
         Assertions.assertEquals(expected, actual);
+    }
+    
+    private int getSum(List<Integer> list) {
+        return list.stream().reduce(Integer::sum).get();
     }
 }
